@@ -25,6 +25,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
+
     public OrderResponse placeOrder(OrderRequest orderRequest) {
         Order order = orderRequest.getOrder();
         order.setStatus("INPROGRESS");
