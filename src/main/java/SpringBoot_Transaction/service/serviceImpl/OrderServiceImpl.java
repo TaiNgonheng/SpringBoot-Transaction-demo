@@ -10,17 +10,21 @@ import SpringBoot_Transaction.repository.PaymentRepository;
 import SpringBoot_Transaction.service.OrderService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.beans.Transient;
 import java.util.UUID;
 
 @Service
-@AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
-    private OrderRepository orderRepository;
-    private PaymentRepository paymentRepository;
+    private final OrderRepository orderRepository;
+    private final PaymentRepository paymentRepository;
+
     @Override
+    @Transactional
     public OrderResponse placeOrder(OrderRequest orderRequest) {
         Order order = orderRequest.getOrder();
         order.setStatus("INPROGRESS");
