@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
 
         Payment payment = orderRequest.getPayment();
         if (!payment.getType().equals("DEBIT")){
-            throw new PaymentException("Payment card type do not support");
+              throw new PaymentException("Payment card type do not support");
         }
         payment.setOrderId(order.getId());
         paymentRepository.save(payment);
